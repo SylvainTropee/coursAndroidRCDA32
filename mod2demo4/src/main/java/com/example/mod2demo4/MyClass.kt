@@ -1,7 +1,7 @@
 package com.example.mod2demo4
 
-class Sport(
-    val name: String,
+open class Sport(
+    open val name: String,
     val type: String,
     val nbPlayer: Int = 2
 ) {
@@ -12,8 +12,15 @@ class Sport(
             _isIndoor = value
         }
 
-    fun displayMatch(): String {
+    open fun displayMatch(): String {
         return "Le match de $name a commencé !"
+    }
+}
+
+class SportCo(name: String, nbPlayer: Int) : Sport(name, "Collectif", nbPlayer){
+
+    override fun displayMatch() : String{
+        return super.displayMatch()  + " et est $type"
     }
 }
 
@@ -25,6 +32,9 @@ fun main() {
     hockeyOnIce.isIndoor = true
     println(hockeyOnIce.isIndoor)
     println(hockeyOnIce.displayMatch())
+
+    val basket = SportCo(name = "Basket", nbPlayer = 5)
+    println(basket.displayMatch())
 
 }
 
