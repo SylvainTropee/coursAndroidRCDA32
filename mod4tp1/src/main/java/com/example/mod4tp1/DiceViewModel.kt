@@ -1,4 +1,48 @@
 package com.example.mod4tp1
 
-class DiceViewModel {
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+
+class DiceViewModel : ViewModel() {
+
+
+    private val _totalLaunch = MutableStateFlow(0)
+    var totalLaunch = _totalLaunch.asStateFlow()
+
+    var totalLaunchLeft = 0
+    var totalLaunchRight = 0
+    var totalLeft = 0
+    var totalRight = 0
+    var diceImageId = R.drawable.d1
+
+
+    fun rollDice(): Int {
+        val currentRoll = (1..6).random()
+        _totalLaunch.value = _totalLaunch.value.inc()
+
+        diceImageId = when (currentRoll) {
+            1 -> R.drawable.d1
+            2 -> R.drawable.d2
+            3 -> R.drawable.d3
+            4 -> R.drawable.d4
+            5 -> R.drawable.d5
+            else -> R.drawable.d6
+        }
+
+        return currentRoll
+    }
+
+    fun rollLeft() {
+        totalLeft += rollDice()
+        totalLaunchLeft++
+    }
+
+    fun rollRight() {
+        totalRight += rollDice()
+        totalLaunchRight++
+    }
+
+
 }
