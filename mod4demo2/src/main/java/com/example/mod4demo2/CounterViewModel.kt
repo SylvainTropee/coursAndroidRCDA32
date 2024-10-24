@@ -10,15 +10,18 @@ class CounterViewModel : ViewModel() {
     private val _counter : MutableStateFlow<Int> = MutableStateFlow(0)
     val counter : StateFlow<Int> = _counter
 
+    var nbPlus : Int = 0
+    var nbMoins : Int = 0
+
     fun minus(){
-        _counter.value  = _counter.value.minus(1)
+        //_counter.value  = _counter.value.minus(1)
+        nbMoins++
     }
 
     fun add(){
         _counter.value = _counter.value.inc()
+        nbPlus++
     }
-
-
 
 
 

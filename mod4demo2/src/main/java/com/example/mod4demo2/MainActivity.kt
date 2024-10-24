@@ -49,6 +49,8 @@ fun Counter(viewModel: CounterViewModel = viewModel()) {
 
     val counter by viewModel.counter.collectAsState()
 
+    val nbPlus = viewModel.nbPlus
+    val nbMoins = viewModel.nbMoins
 
     Row {
 
@@ -63,8 +65,8 @@ fun Counter(viewModel: CounterViewModel = viewModel()) {
         }) {
             Icon(imageVector = Icons.Default.Add, contentDescription = null)
         }
-
-
+        Text(text = "Plus : $nbPlus")
+        Text(text = "Moins : $nbMoins")
     }
 
 
