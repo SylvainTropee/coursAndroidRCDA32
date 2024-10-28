@@ -3,6 +3,7 @@ package com.example.mod5demo3
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -24,6 +25,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        Log.i("TAG", "GEO " + intent.data)
+
         setContent {
             DemoRcda32Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -43,22 +47,23 @@ fun Call() {
     val context = LocalContext.current
 
     val requestPermissionCall = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestPermission()){isGranted ->
-            if(isGranted){
-                Intent(Intent.ACTION_CALL, Uri.parse("tel:0606060606")).also {
-                    context.startActivity(it)
-                }
-            }else{
-                Intent(Intent.ACTION_DIAL, Uri.parse("tel:0606060606")).also{
-                    context.startActivity(it)
-                }
-
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            Intent(Intent.ACTION_CALL, Uri.parse("tel:0606060606")).also {
+                context.startActivity(it)
             }
+        } else {
+            Intent(Intent.ACTION_DIAL, Uri.parse("tel:0606060606")).also {
+                context.startActivity(it)
+            }
+
         }
+    }
 
 
     Button(onClick = {
-            requestPermissionCall.launch(android.Manifest.permission.CALL_PHONE)
+        requestPermissionCall.launch(android.Manifest.permission.CALL_PHONE)
 
     }) {
         Text("CALL")
