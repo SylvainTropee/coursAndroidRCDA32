@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -104,10 +105,31 @@ fun SignInPage(onClickToHome: (String) -> Unit) {
     }
 }
 
+
+@Composable
+fun ComposeA(){
+
+    var name = "";
+    ComposeB(onClickSetName = {michel ->
+        name = michel
+    })
+}
+
+@Composable
+fun ComposeB(onClickSetName : (String) -> Unit){
+    Button(onClick = { onClickSetName("Michel") }){
+        Text("Click !")
+    }
+}
+
+
+
+
+
 @Composable
 @Preview
 fun Preview() {
-    // SignInPage()
+     SignInPage({})
 }
 
 
