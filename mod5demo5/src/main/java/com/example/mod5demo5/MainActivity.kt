@@ -113,6 +113,7 @@ fun ComposeA(){
     ComposeB(onClickSetName = {michel ->
         name = michel
     })
+
 }
 
 @Composable
