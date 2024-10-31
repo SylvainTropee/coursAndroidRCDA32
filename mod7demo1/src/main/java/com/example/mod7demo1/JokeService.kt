@@ -1,6 +1,5 @@
-package com.example.mod7demo1.ui.theme
+package com.example.mod7demo1
 
-import com.example.mod7demo1.Joke
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -16,7 +15,10 @@ interface JokeService {
 
         val BASE_URL = "https://api.chucknorris.io/jokes/"
 
-        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .add(DateConverter)
+            .build()
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)

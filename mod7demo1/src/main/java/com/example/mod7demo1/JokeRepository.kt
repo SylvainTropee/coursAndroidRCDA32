@@ -1,6 +1,4 @@
-package com.example.mod7demo1.ui.theme
-
-import com.example.mod7demo1.Joke
+package com.example.mod7demo1
 
 class JokeRepository(private val jokeService: JokeService) {
 

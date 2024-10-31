@@ -1,6 +1,7 @@
 package com.example.mod7demo1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -29,15 +30,19 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+private const val TAG = "MainActivity"
+
 
 @Composable
 fun JokeDisplay(jokeViewModel: JokeViewModel = viewModel(factory = JokeViewModel.Factory)) {
 
     val joke by jokeViewModel.joke.collectAsState()
+    Log.i(TAG, "JokeDisplay: $joke")
 
     Column(){
         joke?.id?.let { Text(text = it) }
         joke?.value?.let { Text(text = it) }
+        joke?.createdDate?.let { Text(text = it.toString()) }
     }
 
 }
